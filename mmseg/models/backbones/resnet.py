@@ -10,6 +10,8 @@ from mmcv.utils.parrots_wrapper import _BatchNorm
 from ..builder import BACKBONES
 from ..utils import ResLayer
 
+from .PSA import PSA_p, PSA_s
+
 
 class BasicBlock(BaseModule):
     """Basic block for ResNet."""
@@ -46,6 +48,7 @@ class BasicBlock(BaseModule):
             dilation=dilation,
             bias=False)
         self.add_module(self.norm1_name, norm1)
+        self.deattn = PSA_s(planes, planes)
         self.conv2 = build_conv_layer(
             conv_cfg, planes, planes, 3, padding=1, bias=False)
         self.add_module(self.norm2_name, norm2)
@@ -75,6 +78,9 @@ class BasicBlock(BaseModule):
             out = self.conv1(x)
             out = self.norm1(out)
             out = self.relu(out)
+
+            # PSA
+            out = self.deattn(out)
 
             out = self.conv2(out)
             out = self.norm2(out)
