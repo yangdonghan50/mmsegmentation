@@ -4,6 +4,10 @@ from .builder import DATASETS, PIPELINES, build_dataloader, build_dataset
 from .chase_db1 import ChaseDB1Dataset
 from .cityscapes import CityscapesDataset
 from .acdc import ACDCDataset
+from .acdc_night import ACDCNightDataset
+from .acdc_snow import ACDCSnowDataset
+from .acdc_foggy import ACDCFoggyDataset
+from .acdc_rain import ACDCRainDataset
 from .mapillary import MapillaryDataset
 from .coco_stuff import COCOStuffDataset
 from .custom import CustomDataset
@@ -29,5 +33,6 @@ __all__ = [
     'STAREDataset', 'DarkZurichDataset', 'NightDrivingDataset',
     'COCOStuffDataset', 'LoveDADataset', 'MultiImageMixDataset',
     'iSAIDDataset', 'ISPRSDataset', 'PotsdamDataset', 'ACDCDataset',
-    'MapillaryDataset',
+    'MapillaryDataset', 'ACDCNightDataset', 'ACDCSnowDataset', 'ACDCRainDataset',
+    'ACDCFoggyDataset',
 ]
